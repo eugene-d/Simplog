@@ -16,7 +16,7 @@ exports.init = function(logfiles,sio,app) {
 	if(sio)	io = sio;
 	else	io = require('socket.io').listen(app);
 	Object.keys(f).forEach(function(key) {
-		path.exists(f[key], function(exists) {
+		fs.exists(f[key], function(exists) {
 			if(exists) {
 				names.push(key);
 			}
@@ -60,13 +60,13 @@ var logger = function(msg,lvl,ns) {
 exports.log = logger;
 
 exports.render = function(req,res) {
-	var key = req.param('log');
+	var key = req.params.log;
 	if(key) file = f[key];
 	else {
 		key = Object.keys(f)[0];
 		file = f[key];
 	}
-	path.exists(file, function(exists) {
+	fs.exists(file, function(exists) {
 		if(exists)
 			readLog(file,function(err,text) {
 				if(text)
