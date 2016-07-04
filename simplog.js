@@ -73,7 +73,7 @@ exports.render = function(req,res) {
 					if(req.params.rawlog)
 						res.send(text);
 					else
-						res.render(__dirname+'/views/client.jade', {log:text,file:key,files:names});
+						res.render(__dirname+'/views/client.pug', {log:text,file:key,files:names});
 				else		res.send('Error reading log. The log may be empty.');
 			});
 		else
