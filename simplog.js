@@ -70,7 +70,7 @@ exports.render = function(req,res) {
 		if(exists)
 			readLog(file,function(err,text) {
 				if(text)
-					if(req.param('rawlog'))
+					if(req.params.rawlog)
 						res.send(text);
 					else
 						res.render(__dirname+'/views/client.jade', {log:text,file:key,files:names});
